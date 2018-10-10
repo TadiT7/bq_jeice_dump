@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <testkeytype item_name="KEY_POWER" item_value="yes" item_keycode="26" item_left="0" item_top="450" item_right="50" item_bottom="0"/>
+    <testkeytype item_name="KEY_VOLUME_UP" item_value="yes"  item_keycode="24" item_left="0" item_top="250" item_right="50" item_bottom="0"/>
+    <testkeytype item_name="KEY_VOLUME_DOWN" item_value="yes" item_keycode="25" item_left="0" item_top="350" item_right="50" item_bottom="0"/>
+</resources>

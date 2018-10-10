@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <testitem item_name="UimCard_test" item_action="MultipleUimCard" />
+    <testitem item_name="front_camera" item_action="FrontTestCameraClick" >
+        <config config_name="pre_orientation" config_value="90"/>
+        <config config_name="pre_height" config_value="1080"/>
+        <config config_name="pre_width" config_value="1920"/>
+    </testitem>
+    <testitem item_name="back_camera" item_action="BackTestCameraClick" >
+        <config config_name="back_orientation" config_value="90"/>
+        <config config_name="back_height" config_value="1080"/>
+        <config config_name="back_width" config_value="1920"/>
+    </testitem>
+    <!--
+    <testitem item_name="lcd_motor" item_action="Lcd6ColorMotor" >
+        <color_item type="color" value="#FF0000"/>
+        <color_item type="image" value="/sdcard/onedot_port.png"/>
+        <color_item type="color" value="#0000FF"/>
+        <color_item type="color" value="#00FF00"/>
+        <color_item type="color" value="#000000"/>
+        <color_item type="color" value="#FFFFFF"/>
+        <color_item type="color" value="#FFFF00"/>
+    </testitem>
+    -->
+    <!--
+    <testitem item_name="earphone_test" item_action="Earphone" />
+    <testitem item_name="FM" item_action="Fm" />
+    -->
+    <testitem item_name="backlight_keypadlight_test" item_action="BacklightKeypadLight" />
+    <testitem item_name="lcd_motor" item_action="Lcd6ColorMotor" >
+        <!-- note : color value is only RGB , image value is only absolut path -->
+        <color_item type="color" value="#FF0000"/>
+        <color_item type="color" value="#0000FF"/>
+        <color_item type="color" value="#00FF00"/>
+        <color_item type="color" value="#000000"/>
+        <color_item type="color" value="#FFFF00"/>
+        <color_item type="color" value="#FFFFFF"/>
+    </testitem>
+    <!--
+    <testitem item_name="audio_speaker_right" item_action="AutoSpeakerRight" />
+    <testitem item_name="audio_speaker_left" item_action="AutoSpeakerLeft" />
+    -->
+    <!--
+    <testitem item_name="mic1test" item_action="Mic1Loopback" >
+        <config config_name="mic_key" config_value="record_select_mic"/>
+        <config config_name="mic_value" config_value="handset-mic"/>
+        <config config_name="mic_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="mic2test" item_action="Mic2Loopback" >
+        <config config_name="mic2_key" config_value="record_select_mic"/>
+        <config config_name="mic2_value" config_value="secondary-mic"/>
+        <config config_name="mic2_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="receive_test" item_action="AutoReceive" />
+    -->
+    <!--
+    <testitem item_name="fingerAuto" item_action="FingerAuto">
+        <finger_vendor_info item_key="vendorNameInfo" item_value="/proc/tp_info"/>
+
+        <finger_auto_test1 item_key="vendor" item_value="film"/>
+        <finger_auto_test1 item_key="actionName" item_value="com.longcheer.fingerprinttest.DefectActivity"/>
+        <finger_auto_test1 item_key="packageName" item_value=""/>
+        <finger_auto_test1 item_key="activityName" item_value=""/>
+
+        <finger_auto_test2 item_key="vendor" item_value=""/>
+        <finger_auto_test2 item_key="actionName" item_value=""/>
+        <finger_auto_test2 item_key="packageName" item_value=""/>
+        <finger_auto_test2 item_key="activityName" item_value=""/>
+
+        <finger_auto_test3 item_key="vendor" item_value=""/>
+        <finger_auto_test3 item_key="actionName" item_value=""/>
+        <finger_auto_test3 item_key="packageName" item_value=""/>
+        <finger_auto_test3 item_key="activityName" item_value=""/>
+    </testitem>
+    -->
+    <testitem item_name="fingerprint_test" item_action="FingerAuto"/>
+    <testitem item_name="touchpanel_test" item_action="Touchpanel_v3">
+        <config config_name="v3_typec_test" config_value="false"/>
+    </testitem>
+    <testitem item_name="multipoint_test" item_action="MultiPoint" />
+    <!--
+    <testitem item_name="accelerator_test" item_action="Acce_jz">
+
+        <accelerator_test config_name="accetype" config_value="jni" />
+        <accelerator_test config_name="testAcce" config_value="true"/>
+        <accelerator_test config_name="testgyro" config_value="false"/>
+
+        <accelerator_test config_name="acceclear" config_value="false"/>
+    </testitem>
+    <testitem item_name="LightAProximity" item_action="LightAProximity"/>
+    -->
+    <testitem item_name="charge_test" item_action="ChargeVoltage">
+        <charge_voltage_current item_key="voltage" item_value="/sys/class/power_supply/battery/voltage_now" />
+        <charge_voltage_current item_key="current" item_value="/sys/class/power_supply/battery/current_now" />
+        <charge_voltage_current item_key="voltageUnit" item_value="μV" />
+        <charge_voltage_current item_key="currentUnit" item_value="μA" />
+    </testitem>
+    <testitem item_name="nfc_test" item_action="Nfc" />
+    <testitem item_name="bluetooth" item_action="Bluetooth" />
+    <testitem item_name="wifi_test" item_action="Wifi" />
+    <testitem item_name="gps_test" item_action="Gps" />
+    <testitem item_name="SDCard" item_action="TCardP5200" />
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <testitem item_name="sim_status_test_uim" item_action="MultipleSimStatusCheck" />
+    <testitem item_name="front_camera" item_action="FrontTestCamera" >
+        <config config_name="pre_orientation" config_value="90"/>
+        <config config_name="pre_height" config_value="1080"/>
+        <config config_name="pre_width" config_value="1920"/>
+    </testitem>
+    <testitem item_name="back_camera" item_action="BackCameraAutoFocus" >
+        <config config_name="back_orientation" config_value="90"/>
+        <config config_name="back_height" config_value="1080"/>
+        <config config_name="back_width" config_value="1920"/>
+    </testitem>
+    <testitem item_name="backflashled1" item_action="BackFlash" >
+        <config config_name="backtorch1_file" config_value="/sys/class/leds/led:torch_0/brightness"/>
+        <config config_name="backtorch_file_com" config_value="/sys/class/leds/led:switch/brightness"/>
+    </testitem>
+    <testitem item_name="frontflashled" item_action="FrontFlash2">
+        <config config_name="fronttorch_file" config_value="/sys/class/leds/led:torch_1/brightness"/>
+        <config config_name="fronttorch_file_com" config_value="/sys/class/leds/led:switch_1/brightness"/>
+    </testitem>
+    <testitem item_name="earphone_test" item_action="Earphone"  />
+    <testitem item_name="FM"  item_action="Fm"/>
+    <testitem item_name="backlight_keypadlight_test" item_action="BacklightKeypadLight" />
+    <testitem item_name="motor_test" item_action="Motor1" />
+    <testitem item_name="keyboard" item_action="MidtestKeyboard" />
+    <testitem item_name="audio_speaker_bottom" item_action="AutoSpeakerRight" />
+    <testitem item_name="mic1test" item_action="Mic1Loopback" >
+        <config config_name="mic_key" config_value="record_select_mic"/>
+        <config config_name="mic_value" config_value="handset-mic"/>
+        <config config_name="mic_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="mic2test" item_action="Mic2Loopback" >
+        <config config_name="mic2_key" config_value="record_select_mic"/>
+        <config config_name="mic2_value" config_value="secondary-mic"/>
+        <config config_name="mic2_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="receive_test" item_action="AutoReceive" />
+    <testitem item_name="ledtest" item_action="LedFlashTest">
+        <config config_name="leditems" config_value="green{/sys/class/leds/green/brightness};red{/sys/class/leds/red/brightness};blue{/sys/class/leds/blue/brightness}"/>
+    </testitem>
+    <testitem item_name="finger" item_action="SensorTestToolActivity" />
+    <testitem item_name="charge_test" item_action="ChargeVoltage">
+        <charge_voltage_current item_key="voltage" item_value="/sys/class/power_supply/battery/voltage_now" />
+        <charge_voltage_current item_key="current" item_value="/sys/class/power_supply/battery/current_now" />
+        <charge_voltage_current item_key="voltageUnit" item_value="μV" />
+        <charge_voltage_current item_key="currentUnit" item_value="μA" />
+    </testitem>
+    <testitem item_name="nfc_test" item_action="Nfc" />
+    <testitem item_name="accelerator_test" item_action="Acce">
+        <!-- acctype is calibration method,value is framework,jni,bin -->
+        <accelerator_test config_name="accetype" config_value="jni" />
+        <accelerator_test config_name="testAcce" config_value="true"/>
+        <accelerator_test config_name="testgyro" config_value="false"/>
+        <!--acce calibration data clear or not -->
+        <accelerator_test config_name="acceclear" config_value="false"/>
+    </testitem>
+    <testitem item_name="magnetic_test" item_action="MagnetismAuto"/>
+    <testitem item_name="LightAProximity" item_action="LightAProximity" />
+    <testitem item_name="OTG" item_action="OtgP5200" />
+    <testitem item_name="gyroscope" item_action="Gyroscope" />
+   <testitem item_name="UimCard_test" item_action="MultipleUimCard" />
+    <testitem item_name="bluetooth" item_action="Bluetooth" />
+    <testitem item_name="wifi_test" item_action="Wifi" />
+    <testitem item_name="gps_test" item_action="Gps" />
+    <testitem item_name="SDCard" item_action="TCardP5200" />
+</resources>
