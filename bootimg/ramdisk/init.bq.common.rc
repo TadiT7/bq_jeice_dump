@@ -1,0 +1,273 @@
+import init.bq.usb.rc
+import init.bq.device.rc
+
+on boot
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/green/blink
+    #Vibrator intensity modifier
+    chown system system /sys/class/timed_output/vibrator/enable
+    chown system system /sys/class/timed_output/vibrator/wf_s0
+    chown system system /sys/class/timed_output/vibrator/wf_s1
+    chown system system /sys/class/timed_output/vibrator/wf_s2
+    chown system system /sys/class/timed_output/vibrator/wf_s3
+    chown system system /sys/class/timed_output/vibrator/wf_s4
+    chown system system /sys/class/timed_output/vibrator/wf_s5
+    chown system system /sys/class/timed_output/vibrator/wf_s6
+    chown system system /sys/class/timed_output/vibrator/wf_s7
+    chown system system /sys/class/timed_output/vibrator/wf_update_now
+
+    # Double Tap to Wake
+    chown root system /sys/android_touch/wakeup_gesture_enable
+    chmod 0660 /sys/android_touch/wakeup_gesture_enable
+
+on post-fs-data
+service sdlog /system/bin/sdlog
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:persist.service.sdlog.enable=1
+    start sdlog
+
+on property:persist.service.sdlog.enable=0
+    setprop sys.sdlog.run 0
+    stop sdlog
+
+service BQlogSD /system/bin/BQlog sd
+    class main
+    user root
+    disabled
+    seclabel u:r:sdlog:s0
+    oneshot
+
+on property:persist.service.BQlogSD.enable=0
+    stop BQlogSD
+
+on property:persist.service.BQlogSD.enable=1
+    start BQlogSD
+
+service BQlogLocal /system/bin/BQlog local
+    class main
+    user root
+    disabled
+    seclabel u:r:sdlog:s0
+    oneshot
+
+on property:persist.service.BQlogLo.enable=0
+    stop BQlogLocal
+
+on property:persist.service.BQlogLo.enable=1
+    start BQlogLocal
+
+service diag_mdlog /vendor/bin/diag_mdlog
+    user root
+    disable
+    oneshot
+
+service stop_diag_mdlog /vendor/bin/diag_mdlog -k
+    user root
+    disable
+    oneshot
+
+service bqcheck /system/bin/sh /vendor/bin/init.bq.check.sh
+    class late_start
+    user root
+    oneshot
+    seclabel u:r:bqcheck:s0
+
+
+service tpver /vendor/bin/sh /vendor/bin/init.bq.tp.sh
+    class late_start
+    user root
+    oneshot
+    seclabel u:r:tpver:s0
+
+on property:persist.qxdm.enable=1
+    start diag_mdlog
+
+on property:persist.qxdm.enable=0
+    start stop_diag_mdlog
+
+service mmc-info /system/bin/sh /system/etc/mmc-info.sh
+    disabled
+    oneshot
+    user root
+    group root
+    seclabel u:r:healthd:s0
+
+on property:sys.mmc-info=1
+    start mmc-info
+
+service tcpdumpall /vendor/bin/tcpdump -i any -p -s 0 -w /sdcard/tcpdump_all.pcap
+   user root
+   group root
+   disabled
+   oneshot
+
+on property:persist.tcpd.all.enable=1
+   start tcpdumpall
+
+on property:persist.tcpd.all.enable=0
+   stop tcpdumpall
+
+service tcpdumpwifi /vendor/bin/tcpdump -i wlan0 -p -s 0 -w /sdcard/tcpdump_wifi.pcap
+   user root
+   group root
+   disabled
+   oneshot
+
+on property:persist.tcpd.wifi.enable=1
+   start tcpdumpwifi
+
+on property:persist.tcpd.wifi.enable=0
+   stop tcpdumpwifi
+
+on property:sys.boot_completed=1
+   start bqcheck
+
+   #tp version
+   start tpver
+
+service set_sn /vendor/bin/adjust_serialno setsn
+    disable
+    oneshot
+
+on property:sys.sn_set=1
+   start set_sn
+
+#add for tfa98xx calibration
+service smart-pa-tfa-cal /system/vendor/bin/smart-pa-tfa-cal
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:sys.pa-cal=0
+    stop smart-pa-tfa-cal
+
+on property:sys.pa-cal=1
+    start smart-pa-tfa-cal
+	
+	
+#add for loopbacktest
+service loopback_spk1 /system/vendor/bin/loopback.sh 1 1
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_spk0 /system/vendor/bin/loopback.sh 1 0
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_rec1 /system/vendor/bin/loopback.sh 2 1
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_rec0 /system/vendor/bin/loopback.sh 2 0
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_hand1 /system/vendor/bin/loopback.sh 3 1
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_hand0 /system/vendor/bin/loopback.sh 3 0
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_sec1 /system/vendor/bin/loopback.sh 4 1
+    user root
+    group root
+    disabled
+    oneshot
+	
+service loopback_sec0 /system/vendor/bin/loopback.sh 4 0
+    user root
+    group root
+    disabled
+    oneshot
+
+service spk_playback1 /system/vendor/bin/loopback.sh 5 1
+    user root
+    group root
+    disabled
+    oneshot
+	
+service spk_playback0 /system/vendor/bin/loopback.sh 5 0
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:sys.loopback-spk=1
+    start loopback_spk1
+	
+on property:sys.loopback-spk=0
+    start loopback_spk0
+	
+on property:sys.loopback-rec=1
+    start loopback_rec1
+	
+on property:sys.loopback-rec=0
+    start loopback_rec0
+	
+on property:sys.loopback-mic1=1
+    start loopback_hand1
+	
+on property:sys.loopback-mic1=0
+    start loopback_hand0
+	
+on property:sys.loopback-mic2=1
+    start loopback_sec1
+	
+on property:sys.loopback-mic2=0
+    start loopback_sec0
+
+on property:sys.spk-playback=1
+    start spk_playback1
+	
+on property:sys.spk-playback=0
+    start spk_playback0
+
+service tinyhostless_spk /system/vendor/bin/tinyhostless -D 0 -P 43 -C 11 -p 512 -n 2 -c 1 -r 48000
+    user root
+    group root
+    disabled
+    oneshot
+
+service tinyhostless /system/vendor/bin/tinyhostless -D 0 -P 5 -C 11 -p 256 -n 2 -c 1 -r 48000
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:sys.tinyhostless=0
+    stop tinyhostless 
+
+on property:sys.tinyhostless=1
+    start tinyhostless
+
+on property:sys.tinyhostless-spk=0
+    stop tinyhostless_spk
+
+on property:sys.tinyhostless-spk=1
+    start tinyhostless_spk
+
+on property:persist.wlan.cnss_diag=1
+    start cnss_diag
+
+on property:persist.wlan.cnss_diag=0
+    stop cnss_diag

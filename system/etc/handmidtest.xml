@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <testitem item_name="sim_status_test_uim" item_action="MultipleSimStatusCheck" />
+    <testitem item_name="front_camera" item_action="FrontTestCamera" >
+        <config config_name="pre_orientation" config_value="90"/>
+        <config config_name="pre_height" config_value="1080"/>
+        <config config_name="pre_width" config_value="1920"/>
+    </testitem>
+    <testitem item_name="back_camera" item_action="BackCameraAutoFocus" >
+        <config config_name="back_orientation" config_value="90"/>
+        <config config_name="back_height" config_value="1080"/>
+        <config config_name="back_width" config_value="1920"/>
+    </testitem>
+    <testitem item_name="qrcode_test" item_action="QRCode">
+        <config config_name="qrc_orientation" config_value="90"/>
+    </testitem>
+    <testitem item_name="backflashled1" item_action="BackFlash" >
+        <config config_name="backtorch1_file" config_value="/sys/class/leds/led:torch_0/brightness"/>
+        <config config_name="backtorch_file_com" config_value="/sys/class/leds/led:switch/brightness"/>
+    </testitem>
+    <testitem item_name="frontflashled" item_action="FrontFlash2">
+        <config config_name="fronttorch_file" config_value="/sys/class/leds/led:torch_1/brightness"/>
+        <config config_name="fronttorch_file_com" config_value="/sys/class/leds/led:switch_1/brightness"/>
+    </testitem>
+    <!--<testitem item_name="flashled" item_action="Flash" /> -->
+    <!--<testitem item_name="frontflashled" item_action="FrontFlash" /> -->
+    <testitem item_name="earphone_test" item_action="Earphone" />
+    <testitem item_name="FM" item_action="Fm" />
+    <testitem item_name="backlight_keypadlight_test" item_action="BacklightKeypadLight" />
+    <testitem item_name="lcd_motor" item_action="Lcd6ColorMotor" >
+        <!-- note : color value is only RGB , image value is only absolut path -->
+        <color_item type="color" value="#FF0000"/>
+        <color_item type="color" value="#0000FF"/>
+        <color_item type="color" value="#00FF00"/>
+        <color_item type="color" value="#000000"/>
+        <color_item type="color" value="#FFFF00"/>
+        <color_item type="color" value="#FFFFFF"/>
+    </testitem>
+    <!--
+    <testitem item_name="SubLcd4Color" item_action="SubLcd4Color" />
+    -->
+    <testitem item_name="keyboard" item_action="MidtestKeyboard" />
+
+
+    <testitem item_name="audio_speaker_bottom" item_action="AutoSpeakerRight" />
+    <!--
+    <testitem item_name="speaker" item_action="AutoSpeakerLeft">
+        <speaker config_name = "reduce_max_volume" config_value="0"/>
+        <speaker config_name = "speaker_num" config_value="1"/>
+    </testitem>
+    -->
+    <testitem item_name="mic1test" item_action="Mic1Loopback" >
+        <config config_name="mic_key" config_value="record_select_mic"/>
+        <config config_name="mic_value" config_value="handset-mic"/>
+        <config config_name="mic_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="mic2test" item_action="Mic2Loopback" >
+        <config config_name="mic2_key" config_value="record_select_mic"/>
+        <config config_name="mic2_value" config_value="secondary-mic"/>
+        <config config_name="mic2_limit" config_value="29"/>
+    </testitem>
+    <testitem item_name="receive_test" item_action="AutoReceive" />
+
+    <testitem item_name="SmartPaCalibra" item_action="SmartPaCalibration" />
+    <!--testitem item_name="smart_fuction" item_action="SmartPaFuction" /-->
+    <!--<testitem item_name="smartpa" item_action="SmartPA" />-->
+    <!-- <testitem item_name="audio_speaker" item_action="AutoSpeaker"> -->
+    <!-- <speaker config_name = "reduce_max_volume" config_value="0"/> -->
+    <!-- config_value = 2~4  -->
+    <!-- <speaker config_name = "speaker_num" config_value="1"/> -->
+    <!-- </testitem> -->
+    <testitem item_name="ledtest" item_action="LedFlashTest">
+        <config config_name="leditems" config_value="green{/sys/class/leds/green/brightness};red{/sys/class/leds/red/brightness};blue{/sys/class/leds/blue/brightness}"/>
+    </testitem>
+    <!--<testitem item_name="motor1" item_action="Motor1" /> -->
+    <!--
+    <testitem item_name="motor2" item_action="Motor2" />
+    -->
+    <!--<testitem item_name="finger" item_action="SensorTestToolActivity" /> -->
+    <!--
+    <testitem item_name="KeyLed" item_action="KeyLed" />
+    -->
+
+    <!--<testitem item_name="FPTest_goodix" item_action="FingerAuto"/>-->
+    <!-- <testitem item_name="fingerprint_test" item_action="FingerPrint_o"/> -->
+    <testitem item_name="touchpanel_test" item_action="Touchpanel_v2">
+        <config config_name="v2_typec_test" config_value="false"/>
+        <config config_name="node_typec_orientation" config_value="/sys/class/power_supply/usb/typec_cc_orientation"/>
+        <config config_name="v2_diagonal_line_r" config_value="85"/>
+        <config config_name="v2grid_col_num" config_value="13"/>
+        <config config_name="v2grid_row_num" config_value="13"/>
+    </testitem>
+    <!--
+    <testitem item_name="Touchpanel_subscreen" item_action="Touchpanel_subscreen" />
+    <testitem item_name="Touchpen_subscreen" item_action="Touchpen_subscreen" />
+    <testitem item_name="SubLcdMultiPointLine" item_action="SubLcdMultiPointLine" />
+    <testitem item_name="SubLcdScaleImage" item_action="SubLcdScaleImage" />
+
+    <testitem item_name="Tpselftest" item_action="Tpselftest" />
+
+    <testitem item_name="Sub_TpRawData" item_action="Sub_TpRawData" />
+    -->
+    <testitem item_name="FT_test" item_action="FTTest" />
+    <!--testitem item_name="tp_autotest_title" item_action="TpAutoTestSwich" /-->
+    <testitem item_name="multipoint_test" item_action="MultiPoint" />
+    <!-- <testitem item_name="BatteryTemperature" item_action="BatteryTemperature" /> -->
+    <testitem item_name="accelerator_test" item_action="Acce_jz">
+        <!-- acctype is calibration method,value is framework,jni,bin -->
+        <accelerator_test config_name="accetype" config_value="jni" />
+        <accelerator_test config_name="testAcce" config_value="true"/>
+        <accelerator_test config_name="testgyro" config_value="false"/>
+        <!--acce calibration data clear or not -->
+        <accelerator_test config_name="acceclear" config_value="false"/>
+    </testitem>
+    <!--
+    <testitem item_name="AcceSub_pcba" item_action="AcceSub_pcba" />
+    <testitem item_name="Angle_jni" item_action="Angle_jni" />
+    -->
+    <!--
+    <testitem item_name="Touchpanel_grid_sub" item_action="Touchpanel_grid_sub" />
+    -->
+    <testitem item_name="magnetic_test" item_action="Magnetism"/>
+    <testitem item_name="LightAProximity" item_action="LightAProximity"/>
+
+    <testitem item_name="OTG" item_action="OtgP5200" />
+    <testitem item_name="charge_test" item_action="ChargeVoltage">
+        <charge_voltage_current item_key="voltage" item_value="/sys/class/power_supply/battery/voltage_now" />
+        <charge_voltage_current item_key="current" item_value="/sys/class/power_supply/battery/current_now" />
+        <charge_voltage_current item_key="voltageUnit" item_value="μV" />
+        <charge_voltage_current item_key="currentUnit" item_value="μA" />
+    </testitem>
+    <!--
+    <testitem item_name="CapSensorP3590" item_action="CapSensorP3590P6600" />
+    -->
+    <!--testitem item_name="HallSensorTest" item_action="HallSensorTest"/-->
+    <!--testitem item_name="nfc_test" item_action="Nfc" /-->
+    <!-- <testitem item_name="gyroscope" item_action="Gyroscope_cab"> -->
+    <!-- <gyroscopetype_test config_name="gyroscopetype" config_value="jni" /> -->
+    <!-- <gyroscopetype_test config_name="gyroscopebin" config_value="/system/bin/sensors_test 5 g c " /> -->
+    <!-- <gyroscopetype_test config_name="gyroscopepath" config_value="/sys/bus/platform/drivers/gyroscope/selftest" /> -->
+    <!-- </testitem> -->
+    <testitem item_name="gyroscope" item_action="Gyroscope"/>
+
+    <testitem item_name="bluetooth" item_action="Bluetooth" />
+    <testitem item_name="wifi_test" item_action="Wifi" />
+    <testitem item_name="gps_test" item_action="Gps" />
+    <!--<testitem item_name="SDCard" item_action="TCardP5200" />-->
+    <testitem item_name="open_tcard_log" item_action="OpenTcardLog" />
+    <!--<testitem item_name="ffbm" item_action="Ffbm"/> -->
+    <testitem item_name="open_qxdm_log" item_action="OpenQxdmLog"/>
+    <testitem item_name="open_port" item_action="OpenPort" >
+        <config config_name="diag_open" config_value="diag,serial_smd,rmnet_qti_bam,adb"/>
+    </testitem>
+
+</resources>

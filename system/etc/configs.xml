@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- hardware is to diff qcom and mtk platform -->
+    <config config_name="hardware" config_value="qcom" />
+    <config config_name="screenOrientation" config_value="portrait" />
+    <!-- customer is to diff xiaomi lenovo and so on -->
+    <config config_name="customer" config_value="gm" />
+    <config config_name="count" config_value="50" />
+    <config config_name="test" config_value="3" />
+    <!-- 1 means dual camera     0 means single camera-->
+    <config config_name="isDualCamera" config_value="1" />
+    <!--Config for #*2008# test-->
+    <config config_name="wifi_version" config_value="3" />
+
+    <!--testreport-->
+    <config config_name="sn_from_oeminfo" config_value="2"/>
+    <config config_name="network" config_value="WCDMA;CDMA;lTDD-LTE;GSM;TD-SCDMA;LTEFDD;"/>
+    <config config_name="sim_num" config_value="2"/>
+
+    <!--softversion-->
+    <config config_name="tppath" config_value="/proc/tp_info"/>
+    <config config_name="fppath" config_value="/proc/finger_info"/>
+    <config config_name="barcode" config_value="barcode"/>
+    <config config_name="lcdpath" config_value="/sys/class/graphics/fb0/msm_fb_panel_info"/>
+    <config config_name="sublcdpath" config_value="/sys/class/graphics/fb1/msm_fb_panel_info"/>
+    <config config_name="efuse" config_value="/proc/fuse_state"/>
+    <config config_name="batterytype" config_value="/sys/class/power_supply/bms/uevent"/>
+    <config config_name="emmcfile" config_value="/sys/bus/mmc/devices/mmc0:0001/name"/>
+    <config config_name="platformver" config_value="/sys/devices/system/soc/soc0/platform_version"/>
+    <config config_name="emmc_firmware" config_value="/sys/block/mmcblk0/device/fwrev"/>
+
+</resources>

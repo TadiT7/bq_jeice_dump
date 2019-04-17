@@ -1,0 +1,151 @@
+# Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+on init
+    write /sys/class/android_usb/android0/f_rndis/manufacturer bq
+    write /sys/class/android_usb/android0/f_rndis/vendorID 2A47
+    write /sys/class/android_usb/android0/iManufacturer bq
+
+on boot
+    write /sys/class/android_usb/android0/iProduct ${ro.product.model}
+    chown system system /sys/class/leds/led:torch_0/brightness
+    chown system system /sys/class/leds/led:torch_1/brightness
+    chown system system /sys/class/leds/led:switch/brightness
+    chown system system /sys/class/leds/led:switch_1/brightness
+    chmod 644 /sys/class/leds/led:torch_0/brightness
+    chmod 644 /sys/class/leds/led:torch_1/brightness
+    chmod 644 /sys/class/leds/led:switch/brightness
+    chmod 644 /sys/class/leds/led:switch_1/brightness
+
+on property:sys.usb.config=ptp && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 904D
+    write /sys/class/android_usb/android0/functions ptp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=ptp,adb && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 904E
+    write /sys/class/android_usb/android0/functions ptp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct F003
+    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,adb && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 9039
+    write /sys/class/android_usb/android0/functions mtp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,diag && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 901B
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/functions mtp,diag
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mtp,diag,adb && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 903A
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/functions mtp,diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=charging && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct F006
+    write /sys/class/android_usb/android0/functions charging
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=midi && property:sys.usb.configfs=0
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+     write /sys/class/android_usb/android0/idVendor 2A47
+     write /sys/class/android_usb/android0/idProduct 90BA
+     write /sys/class/android_usb/android0/functions midi
+     write /sys/class/android_usb/android0/enable 1
+     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=midi,adb && property:sys.usb.configfs=0
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+     write /sys/class/android_usb/android0/idVendor 2A47
+     write /sys/class/android_usb/android0/idProduct 90BB
+     write /sys/class/android_usb/android0/functions midi,adb
+     write /sys/class/android_usb/android0/enable 1
+     start adbd
+     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=diag,serial_smd,rmnet_ipa  && property:sys.usb.configfs=0
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+     write /sys/class/android_usb/android0/idVendor 2A47
+     write /sys/class/android_usb/android0/idProduct 9E18
+     write /sys/class/android_usb/android0/f_diag/clients diag
+     write /sys/class/android_usb/android0/f_serial/transports smd
+     write /sys/class/android_usb/android0/f_rmnet/transports qti,bam2bam_ipa
+     write /sys/class/android_usb/android0/functions diag,serial,rmnet
+     write /sys/class/android_usb/android0/enable 1
+     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=charging,adb && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+    write /sys/class/android_usb/android0/idVendor 2A47
+    write /sys/class/android_usb/android0/idProduct 9041
+    write /sys/class/android_usb/android0/functions charging,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
